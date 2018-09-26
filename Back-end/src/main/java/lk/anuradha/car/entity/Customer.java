@@ -1,7 +1,15 @@
-package lk.anuradha.car.dto;
+package lk.anuradha.car.entity;
 
-public class CustomerDTO {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
+public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String name;
     private String address;
@@ -9,10 +17,10 @@ public class CustomerDTO {
     private String passport;
     private String NIC;
 
-    public CustomerDTO() {
+    public Customer() {
     }
 
-    public CustomerDTO(String id, String name, String address, String email, String passport, String NIC) {
+    public Customer(String id, String name, String address, String email, String passport, String NIC) {
         this.setId(id);
         this.setName(name);
         this.setAddress(address);
