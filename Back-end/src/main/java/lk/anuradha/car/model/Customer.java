@@ -1,28 +1,34 @@
 package lk.anuradha.car.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "customer")
 public class Customer {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
+    @Column(name = "address")
     private String address;
+    @Column(name = "email")
     private String email;
+    @Column(name = "passport")
     private String passport;
-    private String NIC;
+    @Column(name = "nIC", unique = true, nullable = false)
+    private String nIC;
 
     public Customer() {
     }
 
-    public Customer(long id, String name, String address, String email, String passport, String NIC) {
+    public Customer(long id, String name, String address, String email, String passport, String nIC) {
         this.setId(id);
         this.setName(name);
         this.setAddress(address);
         this.setEmail(email);
         this.setPassport(passport);
-        this.setNIC(NIC);
+        this.setNIC(nIC);
     }
 
     public long getId() {
@@ -66,10 +72,10 @@ public class Customer {
     }
 
     public String getNIC() {
-        return NIC;
+        return nIC;
     }
 
-    public void setNIC(String NIC) {
-        this.NIC = NIC;
+    public void setNIC(String nIC) {
+        this.nIC = nIC;
     }
 }
