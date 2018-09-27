@@ -1,4 +1,4 @@
-package lk.anuradha.car.entity;
+package lk.anuradha.car.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -6,7 +6,7 @@ import javax.persistence.Id;
 @Entity
 public class Customer {
     @Id
-    private String id;
+    private long id;
     private String name;
     private String address;
     private String email;
@@ -16,7 +16,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String id, String name, String address, String email, String passport, String NIC) {
+    public Customer(long id, String name, String address, String email, String passport, String NIC) {
         this.setId(id);
         this.setName(name);
         this.setAddress(address);
@@ -25,23 +25,11 @@ public class Customer {
         this.setNIC(NIC);
     }
 
-    @Override
-    public String toString() {
-        return "CustomerDTO{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", passport='" + passport + '\'' +
-                ", NIC='" + NIC + '\'' +
-                '}';
-    }
-
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

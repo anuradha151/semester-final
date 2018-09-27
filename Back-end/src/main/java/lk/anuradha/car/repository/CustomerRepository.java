@@ -1,8 +1,9 @@
 package lk.anuradha.car.repository;
 
-import org.springframework.http.ResponseEntity;
+import lk.anuradha.car.model.Customer;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CustomerRepository {
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
 
 }

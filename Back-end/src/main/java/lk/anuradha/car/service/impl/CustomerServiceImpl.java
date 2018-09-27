@@ -1,15 +1,23 @@
 package lk.anuradha.car.service.impl;
 
 import lk.anuradha.car.dto.CustomerDTO;
+import lk.anuradha.car.repository.CustomerRepository;
 import lk.anuradha.car.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+
     @Override
     public ResponseEntity<?> saveCustomer(CustomerDTO customerDTO) {
         return null;
+
     }
 
     @Override
