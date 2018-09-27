@@ -2,7 +2,7 @@ package lk.anuradha.car.dto;
 
 public class CustomerDTO {
 
-    private String id;
+    private Long id;
     private String name;
     private String address;
     private String email;
@@ -12,7 +12,7 @@ public class CustomerDTO {
     public CustomerDTO() {
     }
 
-    public CustomerDTO(String id, String name, String address, String email, String passport, String NIC) {
+    public CustomerDTO(Long id, String name, String address, String email, String passport, String NIC) {
         this.setId(id);
         this.setName(name);
         this.setAddress(address);
@@ -24,20 +24,20 @@ public class CustomerDTO {
     @Override
     public String toString() {
         return "CustomerDTO{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", passport='" + passport + '\'' +
-                ", NIC='" + NIC + '\'' +
+                "id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", address='" + getAddress() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", passport='" + getPassport() + '\'' +
+                ", NIC='" + getNIC() + '\'' +
                 '}';
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
