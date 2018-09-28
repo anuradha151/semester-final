@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -72,17 +74,51 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public ResponseEntity<?> deleteCustomer(CustomerDTO customerDTO) {
-        return null;
-    }
+    public ResponseEntity<?> findById(long id) {
+        Optional<Customer> byId = customerRepository.findById(id);
 
-    @Override
-    public ResponseEntity<?> findCustomer(String id) {
-        return null;
+        if (byId.isPresent()) {
+            Customer customer = byId.get();
+            CustomerDTO customerDTO = new CustomerDTO();
+            customerDTO.setId(customer.getId());
+            customerDTO.setAddress(customer.getAddress());
+            customerDTO.setEmail(customer.getEmail());
+            customerDTO.setName(customer.getName());
+            customerDTO.setNIC(customer.getNIC());
+            customerDTO.setPassport(customer.getPassport());
+
+            return new ResponseEntity<>(customerDTO, HttpStatus.OK);
+        } else {
+            ResponseModel res = new ResponseModel(HttpStatus.NOT_FOUND.value(), "Customer details unavailable. ", false);
+            return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
+        }
     }
 
     @Override
     public ResponseEntity<?> findAllCustomers() {
-        return null;
+
+        List<Customer> all = customerRepository.findAll();
+
+        if (all.isEmpty()) {
+            ResponseModel res = new ResponseModel(HttpStatus.NOT_FOUND.value(), "Customer details unavailable. ", false);
+            return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
+        }
+
+        List<CustomerDTO> customerDTOS = new ArrayList<>();
+
+        for (Customer customer : all) {
+            CustomerDTO customerDTO = new CustomerDTO();
+            customerDTO.setId(customer.getId());
+            customerDTO.setAddress(customer.getAddress());
+            customerDTO.setEmail(customer.getEmail());
+            customerDTO.setName(customer.getName());
+            customerDTO.setNIC(customer.getNIC());
+            customerDTO.setPassport(customer.getPassport());
+
+            customerDTOS.add(customerDTO);
+        }
+
+        return new ResponseEntity<>(customerDTOS, HttpStatus.OK);
+
     }
 }

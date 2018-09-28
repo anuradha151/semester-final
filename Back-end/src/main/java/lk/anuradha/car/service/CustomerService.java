@@ -9,9 +9,7 @@ public interface CustomerService {
 
     ResponseEntity<?> updateCustomer(CustomerDTO customerDTO);
 
-    ResponseEntity<?> deleteCustomer(CustomerDTO customerDTO);
-
-    ResponseEntity<?> findCustomer(String id);
+    ResponseEntity<?> findById(long id);
 
     ResponseEntity<?> findAllCustomers();
 
