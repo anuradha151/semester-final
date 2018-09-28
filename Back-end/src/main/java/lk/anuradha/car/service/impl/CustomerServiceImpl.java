@@ -22,7 +22,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public ResponseEntity<?> saveCustomer(CustomerDTO customerDTO) {
+    public ResponseEntity<?> saveCustomer(CustomerDTO customerDTO) throws Exception {
         if (customerDTO == null) {
             ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Error. Cannot find customer details.", false);
             return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
@@ -48,7 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public ResponseEntity<?> updateCustomer(CustomerDTO customerDTO) {
+    public ResponseEntity<?> updateCustomer(CustomerDTO customerDTO) throws Exception {
         if (customerDTO == null) {
             ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Error. Cannot find customer details.", false);
             return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
@@ -74,7 +74,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public ResponseEntity<?> findById(long id) {
+    public ResponseEntity<?> findById(long id) throws Exception {
         Optional<Customer> byId = customerRepository.findById(id);
 
         if (byId.isPresent()) {
@@ -95,7 +95,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public ResponseEntity<?> findAllCustomers() {
+    public ResponseEntity<?> findAllCustomers() throws Exception {
 
         List<Customer> all = customerRepository.findAll();
 
