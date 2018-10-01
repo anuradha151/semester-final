@@ -1,6 +1,8 @@
 package lk.anuradha.car.dto;
 
-public class CustomerDTO {
+import java.io.Serializable;
+
+public class CustomerDTO implements Serializable {
 
     private Long id;
     private String name;
