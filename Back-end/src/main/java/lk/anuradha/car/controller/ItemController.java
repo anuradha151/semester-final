@@ -33,6 +33,16 @@ public class ItemController {
         }
     }
 
+    @GetMapping("/{code}")
+    public ResponseEntity<?> findById(@PathVariable long code) {
+        try {
+            return itemService.findById(code);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new CustomException("Failed to fetch item. Operation unsuccessful");
+        }
+    }
+
     @GetMapping
     public ResponseEntity<?> findAllCustomers() {
         try {
