@@ -32,4 +32,14 @@ public class ItemController {
             throw new CustomException("Failed to update item. Operation unsuccessful");
         }
     }
+
+    @GetMapping
+    public ResponseEntity<?> findAllCustomers() {
+        try {
+            return itemService.getAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new CustomException("Failed to fetch item details. Operation unsuccessful");
+        }
+    }
 }
