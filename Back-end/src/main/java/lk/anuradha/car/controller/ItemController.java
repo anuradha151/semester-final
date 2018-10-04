@@ -5,10 +5,7 @@ import lk.anuradha.car.exception.CustomException;
 import lk.anuradha.car.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/item")
@@ -23,6 +20,16 @@ public class ItemController {
         } catch (Exception e) {
             e.printStackTrace();
             throw new CustomException("Failed to Save item. Operation unsuccessful");
+        }
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updateCustomer(@RequestBody ItemDTO itemDTO) {
+        try {
+            return itemService.update(itemDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new CustomException("Failed to update item. Operation unsuccessful");
         }
     }
 }
