@@ -10,8 +10,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/item")
 public class ItemController {
+
+    private final ItemService itemService;
+
     @Autowired
-    private ItemService itemService;
+    public ItemController(ItemService itemService) {
+        this.itemService = itemService;
+    }
 
     @PostMapping
     public ResponseEntity<?> saveCustomer(@RequestBody ItemDTO itemDTO) {
