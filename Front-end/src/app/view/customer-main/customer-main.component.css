@@ -1,7 +1,12 @@
 #customer-table {
-    margin-top: 15px;
+  margin-top: 15px;
 }
-.save-button{
-    margin-left: 5px;
-    width: 75px;
+
+.save-button {
+  margin-left: 5px;
+  width: 75px;
+}
+
+#customer-form {
+  margin-top: 20px;
 }
