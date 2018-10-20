@@ -2,42 +2,43 @@
   <form method="post" (ngSubmit)="saveCustomer()">
     <div class="form-group">
       <label>Full Name</label>
-      <input name="FullName" type="text" class="form-control" [ngModel]="customer.name">
+      <input name="FullName" type="text" class="form-control" [(ngModel)]="customer.name">
     </div>
     <div class="form-group">
       <label>Address</label>
-      <input [ngModel]="customer.address" name="address" type="text" class="form-control">
+      <input [(ngModel)]="customer.address" name="address" type="text" class="form-control">
     </div>
     <div class="form-group">
       <label>Email</label>
-      <input type="text" class="form-control" [ngModel]="customer.email" name="email">
+      <input type="text" class="form-control" [(ngModel)]="customer.email" name="email">
     </div>
     <div class="form-row">
       <div class="col">
         <div class="form-group">
           <label>NIC Number</label>
-          <input type="text" class="form-control" [ngModel]="customer.nic" name="nic">
+          <input type="text" class="form-control" [(ngModel)]="customer.nic" name="nic">
         </div>
       </div>
       <div class="col">
         <div class="form-group">
           <label>Passport Number(Optional)</label>
-          <input type="text" class="form-control" [ngModel]="customer.passport" name="passport">
+          <input type="text" class="form-control" [(ngModel)]="customer.passport" name="passport">
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <button type="button" class="btn btn-success">Refresh</button>
+        </div>
+        <div class="col-md-6 text-right">
+          <button type="button" class="btn btn-danger">Cancel</button>
+          <input type="submit" class="btn btn-outline-primary save-button" id="btn-cancel" value="SAVE">
         </div>
       </div>
     </div>
   </form>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-6">
-        <button type="button" class="btn btn-success">Refresh</button>
-      </div>
-      <div class="col-md-6 text-right">
-        <button type="button" class="btn btn-danger">Cancel</button>
-        <button type="button" class="btn btn-outline-primary save-button" id="btn-cancel">Save</button>
-      </div>
-    </div>
-  </div>
+
   <table class="table" id="customer-table">
     <thead class="thead-dark">
     <tr>

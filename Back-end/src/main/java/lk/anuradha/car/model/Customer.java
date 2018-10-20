@@ -8,7 +8,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "name", unique = true, nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "address")
     private String address;
@@ -16,7 +16,7 @@ public class Customer {
     private String email;
     @Column(name = "passport")
     private String passport;
-    @Column(name = "nIC", unique = true, nullable = false)
+    @Column(name = "nIC",nullable = false)
     private String nIC;
 
     public Customer() {

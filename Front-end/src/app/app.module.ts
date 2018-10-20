@@ -10,6 +10,7 @@ import {FooterComponent} from './view/footer/footer.component';
 import {CustomerMainComponent} from './view/customer-main/customer-main.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { LoginComponent } from './view/login/login.component';
 
 export const MAIN_URL = 'http://localhost:8080';
 
@@ -30,7 +31,8 @@ const appRoutes: Routes = [
     CarMainComponent,
     NavBarComponent,
     FooterComponent,
-    CustomerMainComponent
+    CustomerMainComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

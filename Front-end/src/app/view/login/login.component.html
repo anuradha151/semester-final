@@ -1,0 +1,41 @@
+<div id="LoginForm">
+  <div class="fadeInDown">
+
+    <div class="login-form">
+      <div class="main-div">
+        <div class="panel fadeIn first">
+          <h2>Admin Login</h2>
+
+        </div>
+        <form id="Login" (ngSubmit)="loginin()" method="post">
+
+          <div class="form-group">
+
+            <input [(ngModel)]="user.username" name="txtUsername" type="text" class="form-control fadeIn second"
+                   placeholder="Username">
+
+          </div>
+
+          <div class="form-group">
+
+            <input [(ngModel)]="user.password" name="txtPassword" type="password" class="form-control fadeIn third"
+                   placeholder="Password">
+
+          </div>
+          <div class="forgot">
+            <p>Forgot password?</p>
+          </div>
+          <button type="submit" class="btn btn-primary fadeIn fourth">Login</button>
+
+        </form>
+        <div *ngIf="failed" class="alert alert-danger alert-dismissible" style="margin-top:10px;">
+          <h6><i class="icon fa fa-ban"></i> Invalid Login Credentials !</h6>
+          Please enter valid login credentials to login
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+

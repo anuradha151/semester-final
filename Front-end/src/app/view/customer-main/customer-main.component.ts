@@ -8,7 +8,7 @@ import {Customer} from '../../dto/Customer';
   styleUrls: ['./customer-main.component.css']
 })
 export class CustomerMainComponent implements OnInit {
-  customer: Customer;
+  customer: Customer = new Customer();
 
   constructor(private customerService: CustomerService) {
   }
@@ -17,6 +17,6 @@ export class CustomerMainComponent implements OnInit {
   }
 
   saveCustomer() {
-    this.customerService.save(this.customer);
+   this.customerService.save(this.customer);
   }
 }

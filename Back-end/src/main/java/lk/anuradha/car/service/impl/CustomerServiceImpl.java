@@ -22,7 +22,8 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public ResponseEntity<?> saveCustomer(CustomerDTO customerDTO) throws Exception {
+    public ResponseEntity<?>
+    saveCustomer(CustomerDTO customerDTO) throws Exception {
         if (customerDTO == null) {
             ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Error. Cannot find customer details.", false);
             return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);

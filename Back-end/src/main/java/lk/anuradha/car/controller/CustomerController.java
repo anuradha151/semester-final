@@ -8,8 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/customer")
 @CrossOrigin
+@RequestMapping("/customer")
 public class CustomerController {
 
 
@@ -20,8 +20,9 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<?> saveCustomer(@RequestBody CustomerDTO customerDTO) {
+        System.out.println(customerDTO);
         try {
             return customerService.saveCustomer(customerDTO);
         } catch (Exception e) {

@@ -34,7 +34,7 @@ public class WebRootConfig {
         LocalContainerEntityManagerFactoryBean emfb = new LocalContainerEntityManagerFactoryBean();
         emfb.setDataSource(ds);
         emfb.setJpaVendorAdapter(jpaVendorAdapter);
-        emfb.setPackagesToScan("lk.ijse.spring.rest.entity");
+        emfb.setPackagesToScan("lk.anuradha.car.model");
         return emfb;
     }
 
