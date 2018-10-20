@@ -17,11 +17,12 @@ export const MAIN_URL = 'http://localhost:8080';
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'customer_main', component: CustomerMainComponent}
+  {path: 'customer_main', component: CustomerMainComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
