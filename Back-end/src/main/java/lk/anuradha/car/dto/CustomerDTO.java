@@ -9,18 +9,18 @@ public class CustomerDTO implements Serializable {
     private String address;
     private String email;
     private String passport;
-    private String NIC;
+    private String nic;
 
     public CustomerDTO() {
     }
 
-    public CustomerDTO(Long id, String name, String address, String email, String passport, String NIC) {
+    public CustomerDTO(Long id, String name, String address, String email, String passport, String nic) {
         this.setId(id);
         this.setName(name);
         this.setAddress(address);
         this.setEmail(email);
         this.setPassport(passport);
-        this.setNIC(NIC);
+        this.setNic(nic);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class CustomerDTO implements Serializable {
                 ", address='" + getAddress() + '\'' +
                 ", email='" + getEmail() + '\'' +
                 ", passport='" + getPassport() + '\'' +
-                ", NIC='" + getNIC() + '\'' +
+                ", nic='" + getNic() + '\'' +
                 '}';
     }
 
@@ -75,11 +75,11 @@ public class CustomerDTO implements Serializable {
         this.passport = passport;
     }
 
-    public String getNIC() {
-        return NIC;
+    public String getNic() {
+        return nic;
     }
 
-    public void setNIC(String NIC) {
-        this.NIC = NIC;
+    public void setNic(String nic) {
+        this.nic = nic;
     }
 }

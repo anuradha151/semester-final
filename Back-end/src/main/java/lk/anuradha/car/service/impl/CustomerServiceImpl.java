@@ -33,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setAddress(customerDTO.getAddress());
         customer.setEmail(customerDTO.getEmail());
         customer.setName(customerDTO.getName());
-        customer.setNIC(customerDTO.getNIC());
+        customer.setNIC(customerDTO.getNic());
         customer.setPassport(customerDTO.getPassport());
 
         Customer save = customerRepository.save(customer);
@@ -59,7 +59,7 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setAddress(customerDTO.getAddress());
         customer.setEmail(customerDTO.getEmail());
         customer.setName(customerDTO.getName());
-        customer.setNIC(customerDTO.getNIC());
+        customer.setNIC(customerDTO.getNic());
         customer.setPassport(customerDTO.getPassport());
 
         Customer save = customerRepository.save(customer);
@@ -85,7 +85,7 @@ public class CustomerServiceImpl implements CustomerService {
             customerDTO.setAddress(customer.getAddress());
             customerDTO.setEmail(customer.getEmail());
             customerDTO.setName(customer.getName());
-            customerDTO.setNIC(customer.getNIC());
+            customerDTO.setNic(customer.getNIC());
             customerDTO.setPassport(customer.getPassport());
 
             return new ResponseEntity<>(customerDTO, HttpStatus.OK);
@@ -113,7 +113,7 @@ public class CustomerServiceImpl implements CustomerService {
             customerDTO.setAddress(customer.getAddress());
             customerDTO.setEmail(customer.getEmail());
             customerDTO.setName(customer.getName());
-            customerDTO.setNIC(customer.getNIC());
+            customerDTO.setNic(customer.getNIC());
             customerDTO.setPassport(customer.getPassport());
 
             customerDTOS.add(customerDTO);
