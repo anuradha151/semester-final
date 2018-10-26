@@ -79,14 +79,7 @@ public class CustomerServiceImpl implements CustomerService {
         Optional<Customer> byId = customerRepository.findById(id);
 
         if (byId.isPresent()) {
-            Customer customer = byId.get();
-            CustomerDTO customerDTO = new CustomerDTO();
-            customerDTO.setId(customer.getId());
-            customerDTO.setAddress(customer.getAddress());
-            customerDTO.setEmail(customer.getEmail());
-            customerDTO.setName(customer.getName());
-            customerDTO.setNic(customer.getNIC());
-            customerDTO.setPassport(customer.getPassport());
+            CustomerDTO customerDTO = entityToDTO(byId.get());
 
             return new ResponseEntity<>(customerDTO, HttpStatus.OK);
         } else {
@@ -121,5 +114,33 @@ public class CustomerServiceImpl implements CustomerService {
 
         return new ResponseEntity<>(customerDTOS, HttpStatus.OK);
 
+    }
+
+    @Override
+    public ResponseEntity<?> findByName(String name) {
+
+        Optional<Customer> byName = customerRepository.findByName(name);
+
+        if (!byName.isPresent()) {
+            return new ResponseEntity<>("No customer is available for the specified name", HttpStatus.NOT_FOUND);
+        }
+
+        CustomerDTO customerDTO = entityToDTO(byName.get());
+
+        return new ResponseEntity<>(customerDTO, HttpStatus.FOUND);
+
+    }
+
+    private CustomerDTO entityToDTO(Customer customer) {
+
+        CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setId(customer.getId());
+        customerDTO.setAddress(customer.getAddress());
+        customerDTO.setEmail(customer.getEmail());
+        customerDTO.setName(customer.getName());
+        customerDTO.setNic(customer.getNIC());
+        customerDTO.setPassport(customer.getPassport());
+
+        return customerDTO;
     }
 }

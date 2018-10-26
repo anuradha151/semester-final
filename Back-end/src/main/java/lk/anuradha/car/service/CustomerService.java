@@ -13,4 +13,6 @@ public interface CustomerService {
 
     ResponseEntity<?> findAllCustomers() throws Exception;
 
+    ResponseEntity<?> findByName(String name);
+
 }
