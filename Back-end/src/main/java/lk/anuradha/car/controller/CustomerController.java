@@ -61,5 +61,10 @@ public class CustomerController {
         }
     }
 
+    @GetMapping("find-by-name/{name}")
+    public ResponseEntity<?> findByName(@PathVariable String name) {
+        return customerService.findByName(name);
+    }
+
 
 }
