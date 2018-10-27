@@ -22,7 +22,7 @@ public class CustomerController {
 
     @PostMapping()
     public ResponseEntity<?> saveCustomer(@RequestBody CustomerDTO customerDTO) {
-        
+        System.out.println(customerDTO);
         try {
             return customerService.saveCustomer(customerDTO);
         } catch (Exception e) {
