@@ -35,7 +35,7 @@ public class Crypto {
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < number2.length(); i++) {
-            sb.append(charOf(bitOf(number2.charAt(i)) ^ bitOf(str.charAt(i)) ^ bitOf(prefix.charAt(i))));
+            sb.append(charOf(bitOf(number1.charAt(i)) ^ bitOf(number2.charAt(i)) ^ bitOf(prefix.charAt(i))));
         }
         String sha256hex = Hashing.sha256()
                 .hashString(sb, StandardCharsets.UTF_8)
@@ -43,7 +43,7 @@ public class Crypto {
         return sha256hex;
     }
 
-    public boolean decode(int score, String mobileNumber, String hash) {
+    public boolean decode(String number1, String number2, String hash) {
 
         // Use these lines of code to equel number digits
 
@@ -55,8 +55,8 @@ public class Crypto {
         //     }
         // }
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < mobileNumber.length(); i++) {
-            sb.append(charOf(bitOf(mobileNumber.charAt(i)) ^ bitOf(str.charAt(i)) ^ bitOf(prefix.charAt(i))));
+        for (int i = 0; i < number1.length(); i++) {
+            sb.append(charOf(bitOf(number1.charAt(i)) ^ bitOf(number2.charAt(i)) ^ bitOf(prefix.charAt(i))));
         }
         String sha256hex = Hashing.sha256()
                 .hashString(sb, StandardCharsets.UTF_8)
