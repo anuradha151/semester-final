@@ -1,5 +1,9 @@
 package lk.anuradha.car.util;
 
+import com.google.common.hash.Hashing;
+
+import java.nio.charset.StandardCharsets;
+
 public class Crypto {
     // prefix, number1, and number2 should contain equel digits
     // In this example, prefix and number2 contain 9 digits and number1 contains 3 digits
