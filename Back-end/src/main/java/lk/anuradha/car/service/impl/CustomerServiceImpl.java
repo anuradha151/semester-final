@@ -77,6 +77,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public ResponseEntity<?> findById(long id) throws Exception {
+
+        // call repository for find customer by id
         Optional<Customer> byId = customerRepository.findById(id);
 
         if (byId.isPresent()) {
