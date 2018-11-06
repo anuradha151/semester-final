@@ -62,6 +62,7 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setNIC(customerDTO.getNic());
         customer.setPassport(customerDTO.getPassport());
 
+        // call update customer method in repository
         Customer save = customerRepository.save(customer);
 
         if (save != null) {
