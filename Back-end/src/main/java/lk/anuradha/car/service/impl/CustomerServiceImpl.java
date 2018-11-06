@@ -94,6 +94,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public ResponseEntity<?> findAllCustomers() throws Exception {
 
+        // get all customer list from the repository
         List<Customer> all = customerRepository.findAll();
 
         if (all.isEmpty()) {
