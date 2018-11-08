@@ -15,4 +15,6 @@ public interface CustomerService {
 
     ResponseEntity<?> findByName(String name);
 
+    ResponseEntity<?> findByEmail(String email);
+
 }
