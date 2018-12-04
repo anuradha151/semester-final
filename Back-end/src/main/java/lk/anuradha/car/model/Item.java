@@ -2,14 +2,14 @@ package lk.anuradha.car.model;
 
 import javax.persistence.*;
 
-//@Entity
+@Entity
 public class Item {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long code;
-//    @Column(name = "description")
+    @Column(name = "description")
     private String description;
-//    @Column(name = "price")
+    @Column(name = "price")
     private double price;
 
     public Item() {
