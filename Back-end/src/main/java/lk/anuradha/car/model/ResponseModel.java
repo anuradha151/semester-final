@@ -1,4 +1,4 @@
-package lk.anuradha.car.model.car_models;
+package lk.anuradha.car.model;
 
 public class ResponseModel {
 

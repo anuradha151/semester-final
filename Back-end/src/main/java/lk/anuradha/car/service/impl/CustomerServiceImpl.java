@@ -1,8 +1,8 @@
 package lk.anuradha.car.service.impl;
 
 import lk.anuradha.car.dto.CustomerDTO;
-import lk.anuradha.car.model.car_models.Customer;
-import lk.anuradha.car.model.car_models.ResponseModel;
+import lk.anuradha.car.model.Customer;
+import lk.anuradha.car.model.ResponseModel;
 import lk.anuradha.car.repository.CustomerRepository;
 import lk.anuradha.car.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
