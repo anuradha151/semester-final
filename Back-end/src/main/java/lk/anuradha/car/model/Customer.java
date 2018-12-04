@@ -2,21 +2,21 @@ package lk.anuradha.car.model;
 
 import javax.persistence.*;
 
-//@Entity
-//@Table(name = "customer")
+@Entity
+@Table(name = "customer")
 public class Customer {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-//    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
-//    @Column(name = "address")
+    @Column(name = "address")
     private String address;
-//    @Column(name = "email")
+    @Column(name = "email")
     private String email;
-//    @Column(name = "passport")
+    @Column(name = "passport")
     private String passport;
-//    @Column(name = "nIC",nullable = false)
+    @Column(name = "nIC",nullable = false)
     private String nIC;
 
     public Customer() {
