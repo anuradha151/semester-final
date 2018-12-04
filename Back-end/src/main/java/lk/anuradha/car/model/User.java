@@ -4,10 +4,10 @@ package lk.anuradha.car.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-//@Entity
+@Entity
 public class User {
 
-//    @Id
+    @Id
     String username;
     String password;
 
