@@ -8,27 +8,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class ItemServiceImpl implements ItemService {
     @Override
-    public ResponseEntity<?> save(ItemDTO itemDTO) throws Exception {
+    public ResponseEntity<?> save(ItemDTO itemDTO) {
         return null;
     }
 
     @Override
-    public ResponseEntity<?> update(ItemDTO itemDTO) throws Exception {
+    public ResponseEntity<?> update(ItemDTO itemDTO) {
         return null;
     }
 
     @Override
-    public ResponseEntity<?> delete(ItemDTO itemDTO) throws Exception {
+    public ResponseEntity<?> delete(ItemDTO itemDTO) {
         return null;
     }
 
     @Override
-    public ResponseEntity<?> findById(long code) throws Exception {
+    public ResponseEntity<?> findById(long code) {
         return null;
     }
 
     @Override
-    public ResponseEntity<?> getAll() throws Exception {
+    public ResponseEntity<?> findAll() {
         return null;
     }
 }

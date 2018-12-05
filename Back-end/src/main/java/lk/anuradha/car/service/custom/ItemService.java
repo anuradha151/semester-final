@@ -1,18 +1,9 @@
 package lk.anuradha.car.service.custom;
 
 import lk.anuradha.car.dto.ItemDTO;
-import org.springframework.http.ResponseEntity;
+import lk.anuradha.car.service.CrudService;
 
-public interface ItemService {
+public interface ItemService extends CrudService<ItemDTO> {
 
-    ResponseEntity<?> save(ItemDTO itemDTO) throws Exception;
-
-    ResponseEntity<?> update(ItemDTO itemDTO) throws Exception;
-
-    ResponseEntity<?> delete(ItemDTO itemDTO) throws Exception;
-
-    ResponseEntity<?> findById(long code) throws Exception;
-
-    ResponseEntity<?> getAll() throws Exception;
 
 }
