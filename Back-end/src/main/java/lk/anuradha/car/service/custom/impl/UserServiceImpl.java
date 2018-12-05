@@ -1,4 +1,4 @@
-package lk.anuradha.car.service.impl;
+package lk.anuradha.car.service.custom.impl;
 
 import lk.anuradha.car.model.User;
 import lk.anuradha.car.repository.UserRepository;

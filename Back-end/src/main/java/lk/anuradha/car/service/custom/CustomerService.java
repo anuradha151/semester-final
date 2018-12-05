@@ -1,4 +1,4 @@
-package lk.anuradha.car.service;
+package lk.anuradha.car.service.custom;
 
 import lk.anuradha.car.dto.CustomerDTO;
 import org.springframework.http.ResponseEntity;
