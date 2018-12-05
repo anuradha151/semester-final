@@ -22,7 +22,6 @@ public class ItemController {
     public ResponseEntity<?> saveCustomer(@RequestBody ItemDTO itemDTO) {
 
 
-
         try {
             return itemService.save(itemDTO);
         } catch (Exception e) {
@@ -54,7 +53,7 @@ public class ItemController {
     @GetMapping
     public ResponseEntity<?> findAllCustomers() {
         try {
-            return itemService.getAll();
+            return itemService.findAll();
         } catch (Exception e) {
             e.printStackTrace();
             throw new CustomException("Failed to fetch item details. Operation unsuccessful");
