@@ -24,7 +24,7 @@ public class CustomerController {
     public ResponseEntity<?> saveCustomer(@RequestBody CustomerDTO customerDTO) {
         System.out.println(customerDTO);
         try {
-            return customerService.saveCustomer(customerDTO);
+            return customerService.save(customerDTO);
         } catch (Exception e) {
             e.printStackTrace();
             throw new CustomException("Failed to Save user. Operation unsuccessful");
@@ -34,7 +34,7 @@ public class CustomerController {
     @PutMapping
     public ResponseEntity<?> updateCustomer(@RequestBody CustomerDTO customerDTO) {
         try {
-            return customerService.updateCustomer(customerDTO);
+            return customerService.update(customerDTO);
         } catch (Exception e) {
             e.printStackTrace();
             throw new CustomException("Failed to Save user. Operation unsuccessful");
@@ -54,7 +54,7 @@ public class CustomerController {
     @GetMapping
     public ResponseEntity<?> findAllCustomers() {
         try {
-            return customerService.findAllCustomers();
+            return customerService.findAll();
         } catch (Exception e) {
             e.printStackTrace();
             throw new CustomException("Failed to fetch customer details. Operation unsuccessful");
