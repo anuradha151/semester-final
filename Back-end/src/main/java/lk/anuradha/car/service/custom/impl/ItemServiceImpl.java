@@ -1,8 +1,11 @@
 package lk.anuradha.car.service.custom.impl;
 
 import lk.anuradha.car.dto.ItemDTO;
+import lk.anuradha.car.model.Item;
+import lk.anuradha.car.model.ResponseModel;
 import lk.anuradha.car.repository.ItemRepository;
 import lk.anuradha.car.service.custom.ItemService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +20,22 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ResponseEntity<?> save(ItemDTO itemDTO) {
-        return null;
+        if (itemDTO == null) {
+            ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Error. Cannot find item details.", false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+        }
+        // create new item entity to call repository
+        Item item = dtoToEntity(itemDTO);
+        // call item repository
+        Item save = itemRepository.save(item);
+
+        if (save != null) {
+            ResponseModel res = new ResponseModel(HttpStatus.CREATED.value(), "Item saved successfully", true);
+            return new ResponseEntity<>(res, HttpStatus.CREATED);
+        } else {
+            ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Error. Item saving failed.", false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
@@ -38,5 +56,14 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public ResponseEntity<?> findAll() {
         return null;
+    }
+
+    private Item dtoToEntity(ItemDTO itemDTO) {
+        Item item = new Item();
+        item.setCode(itemDTO.getCode());
+        item.setDescription(itemDTO.getDescription());
+        item.setPrice(itemDTO.getPrice());
+        return item;
+
     }
 }
