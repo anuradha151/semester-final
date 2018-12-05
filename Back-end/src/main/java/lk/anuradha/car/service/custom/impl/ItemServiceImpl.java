@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ItemServiceImpl implements ItemService {
 
@@ -40,7 +42,26 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ResponseEntity<?> update(ItemDTO itemDTO) {
-        return null;
+        if (itemDTO == null) {
+            ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Error. Cannot find item details.", false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+        }
+        Optional<Item> byId = itemRepository.findById(itemDTO.getCode());
+        Item item = byId.get();
+        item.setDescription(itemDTO.getDescription());
+        item.setPrice(itemDTO.getPrice());
+
+        // call update customer method in repository
+        Item save = itemRepository.save(item);
+
+        if (save != null) {
+            ResponseModel res = new ResponseModel(HttpStatus.CREATED.value(), "Item successfully updated", true);
+            return new ResponseEntity<>(res, HttpStatus.CREATED);
+        } else {
+            ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Error. Item updating failed.", false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @Override
