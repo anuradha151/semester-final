@@ -2,7 +2,7 @@ package lk.anuradha.car.controller;
 
 import lk.anuradha.car.dto.ItemDTO;
 import lk.anuradha.car.exception.CustomException;
-import lk.anuradha.car.service.ItemService;
+import lk.anuradha.car.service.custom.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

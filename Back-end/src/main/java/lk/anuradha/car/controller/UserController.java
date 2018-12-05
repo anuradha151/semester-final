@@ -1,7 +1,7 @@
 package lk.anuradha.car.controller;
 
 import lk.anuradha.car.dto.UserDTO;
-import lk.anuradha.car.service.UserService;
+import lk.anuradha.car.service.custom.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

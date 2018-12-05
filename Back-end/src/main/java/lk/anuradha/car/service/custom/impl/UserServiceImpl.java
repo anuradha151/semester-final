@@ -2,7 +2,7 @@ package lk.anuradha.car.service.custom.impl;
 
 import lk.anuradha.car.model.User;
 import lk.anuradha.car.repository.UserRepository;
-import lk.anuradha.car.service.UserService;
+import lk.anuradha.car.service.custom.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

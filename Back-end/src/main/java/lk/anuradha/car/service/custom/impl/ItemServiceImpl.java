@@ -1,7 +1,7 @@
 package lk.anuradha.car.service.custom.impl;
 
 import lk.anuradha.car.dto.ItemDTO;
-import lk.anuradha.car.service.ItemService;
+import lk.anuradha.car.service.custom.ItemService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
