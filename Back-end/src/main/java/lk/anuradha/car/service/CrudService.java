@@ -10,8 +10,8 @@ public interface CrudService<T> {
 
     ResponseEntity<?> delete(T t);
 
-    ResponseEntity<?> findById(T t);
+    ResponseEntity<?> findById(long id);
 
-    ResponseEntity<?> findAll(T t);
+    ResponseEntity<?> findAll();
 
 }

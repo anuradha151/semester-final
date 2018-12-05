@@ -22,7 +22,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public ResponseEntity<?> saveCustomer(CustomerDTO customerDTO) throws Exception {
+    public ResponseEntity<?> save(CustomerDTO customerDTO) {
         if (customerDTO == null) {
             ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Error. Cannot find customer details.", false);
             return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
@@ -49,7 +49,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public ResponseEntity<?> updateCustomer(CustomerDTO customerDTO) throws Exception {
+    public ResponseEntity<?> update(CustomerDTO customerDTO) {
         if (customerDTO == null) {
             ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Error. Cannot find customer details.", false);
             return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
@@ -76,7 +76,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public ResponseEntity<?> findById(long id) throws Exception {
+    public ResponseEntity<?> delete(CustomerDTO customerDTO) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<?> findById(long id) {
 
         // call repository for find customer by id
         Optional<Customer> byId = customerRepository.findById(id);
@@ -92,7 +97,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public ResponseEntity<?> findAllCustomers() throws Exception {
+    public ResponseEntity<?> findAll() {
 
         // get all customer list from the repository
         List<Customer> all = customerRepository.findAll();
