@@ -12,7 +12,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private
-    int id;
+    int userId;
     private String username;
     private String password;
 
@@ -26,11 +26,11 @@ public class User {
     }
 
     public int getId() {
-        return id;
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
