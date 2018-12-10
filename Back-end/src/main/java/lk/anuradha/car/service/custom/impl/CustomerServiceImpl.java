@@ -22,11 +22,8 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public ResponseEntity<?> save(CustomerDTO customerDTO) {
-        if (customerDTO == null) {
-            ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Error. Cannot find customer details.", false);
-            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
-        }
+    public Customer save(CustomerDTO customerDTO) {
+
         // create new customer entity to call repository
         Customer customer = new Customer();
         customer.setAddress(customerDTO.getAddress());
@@ -36,24 +33,13 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setPassport(customerDTO.getPassport());
 
         // call customer repository
-        Customer save = customerRepository.save(customer);
-
-        if (save != null) {
-            ResponseModel res = new ResponseModel(HttpStatus.CREATED.value(), "Customer saved successfully", true);
-            return new ResponseEntity<>(res, HttpStatus.CREATED);
-        } else {
-            ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Error. Customer saving failed.", false);
-            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
-        }
+        return customerRepository.save(customer);
 
     }
 
     @Override
-    public ResponseEntity<?> update(CustomerDTO customerDTO) {
-        if (customerDTO == null) {
-            ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Error. Cannot find customer details.", false);
-            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
-        }
+    public Customer update(CustomerDTO customerDTO) {
+
         Optional<Customer> byId = customerRepository.findById(customerDTO.getId());
         Customer customer = byId.get();
         customer.setAddress(customerDTO.getAddress());
@@ -63,41 +49,26 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setPassport(customerDTO.getPassport());
 
         // call update customer method in repository
-        Customer save = customerRepository.save(customer);
+        return customerRepository.save(customer);
 
-        if (save != null) {
-            ResponseModel res = new ResponseModel(HttpStatus.CREATED.value(), "Customer successfully updated", true);
-            return new ResponseEntity<>(res, HttpStatus.CREATED);
-        } else {
-            ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Error. Customer updating failed.", false);
-            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
-        }
 
     }
 
     @Override
-    public ResponseEntity<?> delete(CustomerDTO customerDTO) {
-        return null;
+    public void delete(CustomerDTO customerDTO) {
+
     }
 
     @Override
-    public ResponseEntity<?> findById(long id) {
+    public Customer findById(long id) {
 
         // call repository for find customer by id
-        Optional<Customer> byId = customerRepository.findById(id);
+        return customerRepository.findById(id).get();
 
-        if (byId.isPresent()) {
-            CustomerDTO customerDTO = entityToDTO(byId.get());
-
-            return new ResponseEntity<>(customerDTO, HttpStatus.OK);
-        } else {
-            ResponseModel res = new ResponseModel(HttpStatus.NOT_FOUND.value(), "Customer details unavailable. ", false);
-            return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
-        }
     }
 
     @Override
-    public ResponseEntity<?> findAll() {
+    public List<Customer> findAll() {
 
         // get all customer list from the repository
         List<Customer> all = customerRepository.findAll();
@@ -126,7 +97,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public ResponseEntity<?> findByName(String name) {
+    public Customer findByName(String name) {
 
         Optional<Customer> byName = customerRepository.findByName(name);
 
@@ -141,7 +112,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public ResponseEntity<?> findByEmail(String email) {
+    public Customer findByEmail(String email) {
         return null;
     }
 
