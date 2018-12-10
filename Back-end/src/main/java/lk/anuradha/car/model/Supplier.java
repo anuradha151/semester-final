@@ -1,12 +1,13 @@
 package lk.anuradha.car.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Supplier {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @Column(unique = true)
     private String name;
     private String email;
     private String address;
@@ -25,7 +26,7 @@ public class Supplier {
 
     @Override
     public String toString() {
-        return "SupplierDTO{" +
+        return "Supplier{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +

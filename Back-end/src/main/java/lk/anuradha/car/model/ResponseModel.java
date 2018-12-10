@@ -6,6 +6,9 @@ public class ResponseModel {
     private String message;
     private int status;
 
+    public ResponseModel() {
+    }
+
     public ResponseModel(int status, String message, boolean success) {
         this.status = status;
         this.message = message;
