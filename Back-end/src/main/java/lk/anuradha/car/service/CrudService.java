@@ -1,17 +1,17 @@
 package lk.anuradha.car.service;
 
-import org.springframework.http.ResponseEntity;
+import java.util.List;
 
-public interface CrudService<T> {
+public interface CrudService<T, R> {
 
-    ResponseEntity<?> save(T t);
+    R save(T t);
 
-    ResponseEntity<?> update(T t);
+    R update(T t);
 
-    ResponseEntity<?> delete(T t);
+    void delete(T t);
 
-    ResponseEntity<?> findById(long id);
+    R findById(long id);
 
-    ResponseEntity<?> findAll();
+    List<R> findAll();
 
 }
