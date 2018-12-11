@@ -25,10 +25,16 @@ public class CustomerServiceImpl implements CustomerService {
         if (customerDTO == null) {
             return new ResponseEntity<>(new ResponseModel(HttpStatus.NO_CONTENT.value(), "", false), HttpStatus.NO_CONTENT);
         }
-        if (customerRepository.save(dTOtoEntity(customerDTO)) != null) {
-            return new ResponseEntity<>(new ResponseModel(HttpStatus.OK.value(), "Customer saved successfully", true), HttpStatus.OK);
+        try {
+            Customer save = customerRepository.save(dTOtoEntity(customerDTO));
+            if (save != null) {
+                return new ResponseEntity<>(new ResponseModel(HttpStatus.OK.value(), "Customer saved successfully", true), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Customer failed to save", false), HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), e.getMessage() + "\nCustomer failed to save", false), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Customer failed to save", false), HttpStatus.BAD_REQUEST);
     }
 
     @Override
@@ -36,23 +42,28 @@ public class CustomerServiceImpl implements CustomerService {
         if (customerDTO == null) {
             return new ResponseEntity<>(new ResponseModel(HttpStatus.NO_CONTENT.value(), "", false), HttpStatus.NO_CONTENT);
         }
-        Optional<Customer> byId = customerRepository.findById(customerDTO.getId());
-        if (!byId.isPresent()) {
-            return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Cannot update details. Not a existing user", false), HttpStatus.BAD_REQUEST);
-        }
-        Customer customer = byId.get();
-        customer.setAddress(customerDTO.getAddress());
-        customer.setEmail(customerDTO.getEmail());
-        customer.setName(customerDTO.getName());
-        customer.setNIC(customerDTO.getNic());
-        customer.setPassport(customerDTO.getPassport());
+        try {
+            Optional<Customer> byId = customerRepository.findById(customerDTO.getId());
+            if (!byId.isPresent()) {
+                return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Cannot update details. Not a existing user", false), HttpStatus.BAD_REQUEST);
+            }
+            Customer customer = byId.get();
+            customer.setAddress(customerDTO.getAddress());
+            customer.setEmail(customerDTO.getEmail());
+            customer.setName(customerDTO.getName());
+            customer.setNIC(customerDTO.getNic());
+            customer.setPassport(customerDTO.getPassport());
 
-        // call update customer method in repository
-        if (customerRepository.save(dTOtoEntity(customerDTO)) != null) {
-            return new ResponseEntity<>(new ResponseModel(HttpStatus.OK.value(), "Customer updated successfully", true), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Customer failed to update", false), HttpStatus.BAD_REQUEST);
 
+            Customer save = customerRepository.save(dTOtoEntity(customerDTO));
+            if (save != null) {
+                return new ResponseEntity<>(new ResponseModel(HttpStatus.OK.value(), "Customer updated successfully", true), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Customer failed to update", false), HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), e.getMessage() + "\nCustomer failed to update", false), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
