@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
         if (customerRepository.save(dTOtoEntity(customerDTO)) != null) {
             return new ResponseEntity<>(new ResponseModel(HttpStatus.OK.value(), "Customer saved successfully", true), HttpStatus.OK);
         }
-        return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Customer failed to save", true), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Customer failed to save", false), HttpStatus.BAD_REQUEST);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
         Optional<Customer> byId = customerRepository.findById(customerDTO.getId());
         if (!byId.isPresent()) {
-            return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Cannot update details. Not a existing user", true), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Cannot update details. Not a existing user", false), HttpStatus.BAD_REQUEST);
         }
         Customer customer = byId.get();
         customer.setAddress(customerDTO.getAddress());
