@@ -20,27 +20,26 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-
     @Override
-    public Customer save(CustomerDTO customerDTO) {
-
-        // create new customer entity to call repository
-        Customer customer = new Customer();
-        customer.setAddress(customerDTO.getAddress());
-        customer.setEmail(customerDTO.getEmail());
-        customer.setName(customerDTO.getName());
-        customer.setNIC(customerDTO.getNic());
-        customer.setPassport(customerDTO.getPassport());
-
-        // call customer repository
-        return customerRepository.save(customer);
-
+    public ResponseEntity<?> save(CustomerDTO customerDTO) {
+        if (customerDTO == null) {
+            return new ResponseEntity<>(new ResponseModel(HttpStatus.NO_CONTENT.value(), "", false), HttpStatus.NO_CONTENT);
+        }
+        if (customerRepository.save(dTOtoEntity(customerDTO)) != null) {
+            return new ResponseEntity<>(new ResponseModel(HttpStatus.OK.value(), "Customer saved successfully", true), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Customer failed to save", true), HttpStatus.BAD_REQUEST);
     }
 
     @Override
-    public Customer update(CustomerDTO customerDTO) {
-
+    public ResponseEntity<?> update(CustomerDTO customerDTO) {
+        if (customerDTO == null) {
+            return new ResponseEntity<>(new ResponseModel(HttpStatus.NO_CONTENT.value(), "", false), HttpStatus.NO_CONTENT);
+        }
         Optional<Customer> byId = customerRepository.findById(customerDTO.getId());
+        if (!byId.isPresent()) {
+            return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Cannot update details. Not a existing user", true), HttpStatus.BAD_REQUEST);
+        }
         Customer customer = byId.get();
         customer.setAddress(customerDTO.getAddress());
         customer.setEmail(customerDTO.getEmail());
@@ -49,71 +48,80 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setPassport(customerDTO.getPassport());
 
         // call update customer method in repository
-        return customerRepository.save(customer);
-
-
-    }
-
-    @Override
-    public void delete(CustomerDTO customerDTO) {
+        if (customerRepository.save(dTOtoEntity(customerDTO)) != null) {
+            return new ResponseEntity<>(new ResponseModel(HttpStatus.OK.value(), "Customer updated successfully", true), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Customer failed to update", false), HttpStatus.BAD_REQUEST);
 
     }
 
     @Override
-    public Customer findById(long id) {
+    public ResponseEntity<?> delete(CustomerDTO customerDTO) {
+        if (customerDTO == null) {
+            return new ResponseEntity<>(new ResponseModel(HttpStatus.NO_CONTENT.value(), "", false), HttpStatus.NO_CONTENT);
+        }
+        Optional<Customer> byId = customerRepository.findById(customerDTO.getId());
+        if (!byId.isPresent()) {
+            return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Not a existing user", false), HttpStatus.BAD_REQUEST);
+        }
+
+        try {
+            customerRepository.delete(byId.get());
+            return new ResponseEntity<>(new ResponseModel(HttpStatus.OK.value(), "Customer removed successfully", true), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Customer failed to remove", false), HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+    @Override
+    public ResponseEntity<?> findById(long id) {
 
         // call repository for find customer by id
-        return customerRepository.findById(id).get();
+        Optional<Customer> byId = customerRepository.findById(id);
 
+        if (byId.isPresent()) {
+            CustomerDTO customerDTO = entityToDTO(byId.get());
+            return new ResponseEntity<>(customerDTO, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Customer details unavailable. ", false), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
-    public List<Customer> findAll() {
+    public ResponseEntity<?> findAll() {
 
-        // get all customer list from the repository
         List<Customer> all = customerRepository.findAll();
-
         if (all.isEmpty()) {
-            ResponseModel res = new ResponseModel(HttpStatus.NOT_FOUND.value(), "Customer details unavailable. ", false);
-            return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ResponseModel(HttpStatus.NOT_FOUND.value(), "Customer details unavailable. ", false), HttpStatus.NOT_FOUND);
         }
-
         List<CustomerDTO> customerDTOS = new ArrayList<>();
-
         for (Customer customer : all) {
-            CustomerDTO customerDTO = new CustomerDTO();
-            customerDTO.setId(customer.getId());
-            customerDTO.setAddress(customer.getAddress());
-            customerDTO.setEmail(customer.getEmail());
-            customerDTO.setName(customer.getName());
-            customerDTO.setNic(customer.getNIC());
-            customerDTO.setPassport(customer.getPassport());
-
-            customerDTOS.add(customerDTO);
+            customerDTOS.add(entityToDTO(customer));
         }
-
         return new ResponseEntity<>(customerDTOS, HttpStatus.OK);
 
     }
 
     @Override
-    public Customer findByName(String name) {
+    public ResponseEntity<?> findByName(String name) {
 
         Optional<Customer> byName = customerRepository.findByName(name);
-
         if (!byName.isPresent()) {
-            return new ResponseEntity<>("No customer is available for the specified name", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No customer is available for the specified name", HttpStatus.BAD_REQUEST);
         }
-
         CustomerDTO customerDTO = entityToDTO(byName.get());
-
-        return new ResponseEntity<>(customerDTO, HttpStatus.FOUND);
-
+        return new ResponseEntity<>(customerDTO, HttpStatus.OK);
     }
 
     @Override
-    public Customer findByEmail(String email) {
-        return null;
+    public ResponseEntity<?> findByEmail(String email) {
+        Optional<Customer> byName = customerRepository.findByMail(email);
+        if (!byName.isPresent()) {
+            return new ResponseEntity<>("No customer is available for the specified mail", HttpStatus.NOT_FOUND);
+        }
+        CustomerDTO customerDTO =
+        return new ResponseEntity<>(customerDTO, HttpStatus.OK);
     }
 
     private CustomerDTO entityToDTO(Customer customer) {
@@ -128,4 +136,16 @@ public class CustomerServiceImpl implements CustomerService {
 
         return customerDTO;
     }
+
+    private Customer dTOtoEntity(CustomerDTO customerDTO) {
+        Customer customer = new Customer();
+        customer.setAddress(customerDTO.getAddress());
+        customer.setEmail(customerDTO.getEmail());
+        customer.setName(customerDTO.getName());
+        customer.setNIC(customerDTO.getNic());
+        customer.setPassport(customerDTO.getPassport());
+        return customer;
+    }
+
+
 }
