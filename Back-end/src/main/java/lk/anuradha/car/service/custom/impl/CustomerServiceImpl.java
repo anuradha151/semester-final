@@ -25,6 +25,7 @@ public class CustomerServiceImpl implements CustomerService {
         if (customerDTO == null) {
             return new ResponseEntity<>(new ResponseModel(HttpStatus.NO_CONTENT.value(), "", false), HttpStatus.NO_CONTENT);
         }
+
         try {
             Customer save = customerRepository.save(dTOtoEntity(customerDTO));
             if (save != null) {
@@ -35,6 +36,8 @@ public class CustomerServiceImpl implements CustomerService {
         } catch (Exception e) {
             return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), e.getMessage() + "\nCustomer failed to save", false), HttpStatus.BAD_REQUEST);
         }
+
+
     }
 
     @Override
