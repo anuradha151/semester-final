@@ -5,7 +5,6 @@ import lk.anuradha.car.model.Customer;
 import lk.anuradha.car.model.ResponseModel;
 import lk.anuradha.car.repository.CustomerRepository;
 import lk.anuradha.car.service.custom.CustomerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,8 +16,12 @@ import java.util.Optional;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-    @Autowired
-    private CustomerRepository customerRepository;
+
+    private final CustomerRepository customerRepository;
+
+    public CustomerServiceImpl(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     @Override
     public ResponseEntity<?> save(CustomerDTO customerDTO) {
