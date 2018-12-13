@@ -132,10 +132,9 @@ public class CustomerServiceImpl implements CustomerService {
     public ResponseEntity<?> findByEmail(String email) {
         Optional<Customer> byName = customerRepository.findByMail(email);
         if (!byName.isPresent()) {
-            return new ResponseEntity<>("No customer is available for the specified mail", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No customer is available for the specified mail", HttpStatus.BAD_REQUEST);
         }
-        CustomerDTO customerDTO =
-        return new ResponseEntity<>(customerDTO, HttpStatus.OK);
+        return new ResponseEntity<>(entityToDTO(byName.get()), HttpStatus.OK);
     }
 
     private CustomerDTO entityToDTO(Customer customer) {
