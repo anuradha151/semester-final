@@ -27,9 +27,14 @@ public class ItemServiceImpl implements ItemService {
             return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
         }
         // create new item entity to call repository
-        Item item = dtoToEntity(itemDTO);
-        // call item repository
-        Item save = itemRepository.save(item);
+        Item save = null;
+        try {
+            save = itemRepository.save(dtoToEntity(itemDTO));
+        } catch (Exception e) {
+            e.printStackTrace();
+            ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), e.getMessage() + "\nError. Item saving failed.", false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+        }
 
         if (save != null) {
             ResponseModel res = new ResponseModel(HttpStatus.CREATED.value(), "Item saved successfully", true);
@@ -52,7 +57,14 @@ public class ItemServiceImpl implements ItemService {
         item.setPrice(itemDTO.getPrice());
 
         // call update customer method in repository
-        Item save = itemRepository.save(item);
+        Item save = null;
+        try {
+            save = itemRepository.save(item);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), e.getMessage() + "Error. Item updating failed.", false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+        }
 
         if (save != null) {
             ResponseModel res = new ResponseModel(HttpStatus.CREATED.value(), "Item successfully updated", true);
@@ -65,8 +77,22 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public ResponseEntity<?> delete(ItemDTO itemDTO) {
-        return null;
+    public ResponseEntity<?> delete(long code) {
+        Optional<Item> byId = itemRepository.findById(code);
+        if (!byId.isPresent()) {
+            ResponseModel res = new ResponseModel(HttpStatus.NO_CONTENT.value(), "", false);
+            return new ResponseEntity<>(res, HttpStatus.NO_CONTENT);
+        }
+        try {
+            itemRepository.delete(byId.get());
+            ResponseModel res = new ResponseModel(HttpStatus.OK.value(), "Item successfully removed from the system", false);
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Error. Item deletion failed.", false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @Override

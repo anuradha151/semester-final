@@ -8,7 +8,7 @@ public interface CrudService<T> {
 
     ResponseEntity<?> update(T t);
 
-    ResponseEntity<?> delete(T t);
+    ResponseEntity<?> delete(long id);
 
     ResponseEntity<?> findById(long id);
 
