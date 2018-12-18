@@ -1,34 +1,33 @@
 package lk.anuradha.car.service.custom.impl;
 
 import lk.anuradha.car.dto.SupplierDTO;
-import lk.anuradha.car.model.Supplier;
 import lk.anuradha.car.service.custom.SupplierService;
-
-import java.util.List;
+import org.springframework.http.ResponseEntity;
 
 public class SupplierServiceImpl implements SupplierService {
+
     @Override
-    public Supplier save(SupplierDTO supplierDTO) {
+    public ResponseEntity<?> save(SupplierDTO supplierDTO) {
         return null;
     }
 
     @Override
-    public Supplier update(SupplierDTO supplierDTO) {
+    public ResponseEntity<?> update(SupplierDTO supplierDTO) {
         return null;
     }
 
     @Override
-    public void delete(SupplierDTO supplierDTO) {
-
-    }
-
-    @Override
-    public Supplier findById(long id) {
+    public ResponseEntity<?> delete(long id) {
         return null;
     }
 
     @Override
-    public List<Supplier> findAll() {
+    public ResponseEntity<?> findById(long id) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<?> findAll() {
         return null;
     }
 }
