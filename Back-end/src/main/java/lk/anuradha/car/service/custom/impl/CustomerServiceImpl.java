@@ -76,10 +76,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public ResponseEntity<?> delete(long id) {
-        if (customerDTO == null) {
-            return new ResponseEntity<>(new ResponseModel(HttpStatus.NO_CONTENT.value(), "", false), HttpStatus.NO_CONTENT);
-        }
-        Optional<Customer> byId = customerRepository.findById(customerDTO.getId());
+
+        Optional<Customer> byId = customerRepository.findById(id);
         if (!byId.isPresent()) {
             return new ResponseEntity<>(new ResponseModel(HttpStatus.BAD_REQUEST.value(), "Not a existing user", false), HttpStatus.BAD_REQUEST);
         }
