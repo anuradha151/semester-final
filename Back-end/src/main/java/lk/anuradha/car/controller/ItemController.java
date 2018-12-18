@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/item")
+@CrossOrigin
 public class ItemController {
 
     private final ItemService itemService;
@@ -58,5 +59,10 @@ public class ItemController {
             e.printStackTrace();
             throw new CustomException("Failed to fetch item details. Operation unsuccessful");
         }
+    }
+
+    @DeleteMapping("/{code}")
+    public ResponseEntity<?> deleteItemByCode(@PathVariable long code) {
+        return itemService.delete(code);
     }
 }

@@ -72,8 +72,10 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+
+
     @Override
-    public ResponseEntity<?> delete(CustomerDTO customerDTO) {
+    public ResponseEntity<?> delete(long id) {
         if (customerDTO == null) {
             return new ResponseEntity<>(new ResponseModel(HttpStatus.NO_CONTENT.value(), "", false), HttpStatus.NO_CONTENT);
         }

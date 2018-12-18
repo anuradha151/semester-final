@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -97,12 +99,36 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ResponseEntity<?> findById(long code) {
-        return null;
+        Optional<Item> byId = null;
+        try {
+            byId = itemRepository.findById(code);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), e.getMessage() + "Error occurred while looking for an item ", false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+        }
+        if (!byId.isPresent()) {
+            ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), "No item data found", false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(entityToDTO(byId.get()), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<?> findAll() {
-        return null;
+        List<Item> all = null;
+        try {
+            all = itemRepository.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            ResponseModel res = new ResponseModel(HttpStatus.BAD_REQUEST.value(), e.getMessage() + "Error occurred while looking for all items", false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+        }
+        List<ItemDTO> itemDTOS = new ArrayList<>();
+        for (Item item : all) {
+            itemDTOS.add(entityToDTO(item));
+        }
+        return new ResponseEntity<>(itemDTOS, HttpStatus.OK);
     }
 
     private Item dtoToEntity(ItemDTO itemDTO) {
@@ -111,6 +137,15 @@ public class ItemServiceImpl implements ItemService {
         item.setDescription(itemDTO.getDescription());
         item.setPrice(itemDTO.getPrice());
         return item;
+
+    }
+
+    private ItemDTO entityToDTO(Item item) {
+        ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setCode(item.getCode());
+        itemDTO.setDescription(item.getDescription());
+        itemDTO.setPrice(item.getPrice());
+        return itemDTO;
 
     }
 }
