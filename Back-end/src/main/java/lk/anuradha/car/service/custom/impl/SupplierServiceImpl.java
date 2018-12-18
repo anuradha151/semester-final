@@ -3,7 +3,9 @@ package lk.anuradha.car.service.custom.impl;
 import lk.anuradha.car.dto.SupplierDTO;
 import lk.anuradha.car.service.custom.SupplierService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SupplierServiceImpl implements SupplierService {
 
     @Override
