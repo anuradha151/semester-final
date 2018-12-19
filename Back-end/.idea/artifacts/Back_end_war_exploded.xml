@@ -22,6 +22,12 @@
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-jwt:1.0.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.bouncycastle:bcpkix-jdk15on:1.56" />
           <element id="library" level="project" name="Maven: org.bouncycastle:bcprov-jdk15on:1.56" />
+          <element id="library" level="project" name="Maven: org.springframework.security.oauth:spring-security-oauth2:2.0.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:3.2.3.RELEASE" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.6" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" />
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-jpa:2.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons:2.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:5.0.7.RELEASE" />
