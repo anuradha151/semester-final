@@ -19,7 +19,9 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.0.7.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:5.0.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-jwt:1.0.9.RELEASE" />
+          <element id="library" level="project" name="Maven: org.bouncycastle:bcpkix-jdk15on:1.56" />
+          <element id="library" level="project" name="Maven: org.bouncycastle:bcprov-jdk15on:1.56" />
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-jpa:2.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons:2.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:5.0.7.RELEASE" />

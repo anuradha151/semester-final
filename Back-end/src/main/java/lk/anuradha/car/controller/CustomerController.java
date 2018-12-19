@@ -53,12 +53,7 @@ public class CustomerController {
 
     @GetMapping
     public ResponseEntity<?> findAllCustomers() {
-        try {
-            return customerService.findAll();
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new CustomException("Failed to fetch customer details. Operation unsuccessful");
-        }
+        return customerService.findAll();
     }
 
     @GetMapping("find-by-name/{name}")
